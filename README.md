@@ -1,2 +1,4 @@
-# take-your-time
-small aplication for tracking your time line 
+# TODO
+
+1. Ability add more timers dynamic 
+2. move to DB
