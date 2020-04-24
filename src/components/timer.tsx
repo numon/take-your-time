@@ -1,39 +1,43 @@
 import React, { useCallback, useState } from 'react';
+import { timeToHours, timeToMin, timeToSec } from '../utils/dateParser';
 
-export default function Timer({setTime}: any) {
-  const [ timer, setTimer ] = useState(0);
+export default function Timer({timeInfo, setTime} : any) {
+
+  const [ time, setTimer ] = useState(0);
   const [ intervalId, SetIntervalID ] = useState();
 
   const handleStartTimer = useCallback(
     () => {
       if (intervalId) clearInterval(intervalId);
       let t = Date.now();
-      SetIntervalID(setInterval(() => setTimer(timer + Date.now() - t), 1000));
+      SetIntervalID(setInterval(() => setTimer(time + Date.now() - t), 1000));
     },
-    [ timer, intervalId ]
+    [ time, intervalId ]
   );
-  const convertToSec = useCallback(
-    (time: number): number => Math.floor((time % (1000 * 60)) / 1000),
-    []
-  );
-  const convertToMin = useCallback(
-    (time: number): number => Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)),
-    []
-  );
+
+  const convertToSec = useCallback(timeToSec, []);
+  const convertToMin = useCallback(timeToMin, []);
+  const convertToHours = useCallback(timeToHours, []);
+
   const handleStopTimer = useCallback(
     () => {
       clearInterval(intervalId);
-      setTime(timer);
+      setTime({
+        title: timeInfo.title,
+        time
+      });
     },
-    [ intervalId, timer, setTime ]
+    [ intervalId, time, setTime, timeInfo.title ]
   );
 
-  const showMin = convertToMin(timer) > 0 && convertToMin(timer);
-  const showSec = convertToSec(timer) > 0 ? convertToSec(timer) : 0;
+  const showHours = convertToHours(time);
+  const showMin = convertToMin(time);
+  const showSec = convertToSec(time);
 
   return (
     <div>
-      <p>{showMin && `${showMin}:`}{showSec} sec</p>
+      <p>{timeInfo.title}-{timeInfo.icon}</p>
+      <p>{showHours}:{showMin}:{showSec}</p>
       <button onClick={handleStartTimer}>start</button>
       <button onClick={handleStopTimer}>pause</button>
     </div>
