@@ -1,14 +1,13 @@
 # TODO
 
-1. Code review:
-- adding small function to cover form, validation
+Code review:
 - remove any type
-- empty array of timers
- 
-2 move to DB:
-- add to database
-- add autentification
+- performance
+- unit tests 
+
+1. add style
+
+2. change flow to one button start/save 
 
 3. move to online
 
-4. add styling
