@@ -1,6 +1,8 @@
 import React, { useCallback, useState } from 'react';
-import { timeToHours, timeToMin, timeToSec } from '../utils/dateParser';
-import EditForm from './editForm';
+import { timeToHours, timeToMin, timeToSec } from '../../utils/dateParser';
+import EditForm from '../EditForm/EditForm';
+
+import './Timer.css';
 
 function Timer({timeInfo, updateTimer, deleteTimer}: any) {
 
@@ -44,20 +46,24 @@ function Timer({timeInfo, updateTimer, deleteTimer}: any) {
   const showSec = convertToSec(time);
 
   return (
-    <div>
-      <p>{timeInfo.title}-{timeInfo.icon}
-        ---<span onClick={handleShowForm}>E</span>
+      <div className="timer">
+        <div className="timer__title">
+          {timeInfo.title} -
+        <span onClick={handleShowForm}>E</span>
         {editForm && <EditForm
           timeInfo={timeInfo}
           showForm={shotEditForm}
           updateTimer={updateTimer}
-        />}
-      </p>
-      <p>{showHours}:{showMin}:{showSec}</p>
-      <button onClick={handleStartTimer}>start</button>
-      <button onClick={handleStopTimer}>pause</button>
-      <button onClick={handleDeleteTimer}>Delete</button>
-    </div>
+          />}
+        </div>
+        <div className="timer__time">{showHours}:{showMin}:{showSec}</div>
+        <div className="timer__icon">{timeInfo.icon}</div>
+        <div className="timer__nav">
+          <button onClick={handleStartTimer} className="btn">start</button>
+          <button onClick={handleStopTimer} className="btn">pause</button>
+          <button onClick={handleDeleteTimer} className="btn">Delete</button>
+        </div>
+      </div>
   );
 }
 

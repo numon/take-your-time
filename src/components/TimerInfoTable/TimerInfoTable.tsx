@@ -1,5 +1,5 @@
 import React from 'react';
-import { timeToHours, timeToMin, timeToSec } from '../utils/dateParser';
+import { timeToHours, timeToMin, timeToSec } from '../../utils/dateParser';
 
 const TimerInfoTable = ({timers}: any) => {
   return (

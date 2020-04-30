@@ -1,13 +1,12 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import Timer from './components/timer';
-import TimerForm from './components/timerForm';
-import TimerInfoTable from './components/timerInfoTable';
+import TimerForm from './components/TimerForm/TimerForm';
+import TimerInfoTable from './components/TimerInfoTable/TimerInfoTable';
 import { TimerData } from './interfaces';
+import TimerList from './components/TimerList/TimerList';
 
 
 function App() {
-  const [ showForm, SetShowForm ] = useState<boolean>(false);
   const [ timerList, setTimerList ] = useState<TimerData[]>([
     {
       id: 1,
@@ -20,15 +19,48 @@ function App() {
       title: 'games',
       icon: 'games',
       time: 0
+    },
+    {
+      id: 3,
+      title: 'games',
+      icon: 'games',
+      time: 0
+    },
+    {
+      id: 4,
+      title: 'games',
+      icon: 'games',
+      time: 0
+    },
+    {
+      id: 5,
+      title: 'games',
+      icon: 'games',
+      time: 0
+    },
+    {
+      id: 6,
+      title: 'games',
+      icon: 'games',
+      time: 0
+    },
+    {
+      id: 6,
+      title: 'games',
+      icon: 'games',
+      time: 0
+    },
+    {
+      id: 8,
+      title: 'games',
+      icon: 'games',
+      time: 0
     }
-  ]);
 
-  const handleShowForm = useCallback((): void => SetShowForm(true), []);
-  const handleHideForm = useCallback((): void => SetShowForm(false), []);
+  ]);
 
   const addNewTimer = (newTimer: TimerData) =>
     setTimerList((timers: TimerData[]): TimerData[] => [ ...timers, newTimer ]);
-
 
   const changeTimeInfo = <T extends TimerData>(timer: T): void =>
     setTimerList((timers: TimerData[]) => {
@@ -43,24 +75,14 @@ function App() {
   };
 
   return (
-
     <div className="App">
-      <div>
-        <TimerInfoTable timers={timerList}/>
-      </div>
-
-      <button onClick={handleShowForm}>Add timer</button>
-      {showForm && <TimerForm addTimer={addNewTimer} closeForm={handleHideForm}/>}
-      {
-        timerList.map((timerInfo: TimerData, i: number) =>
-          <Timer
-            key={i}
-            updateTimer={changeTimeInfo}
-            deleteTimer={deleteTimer}
-            timeInfo={timerInfo}
-          />
-        )
-      }
+      <TimerInfoTable timers={timerList}/>
+      <TimerForm addTimer={addNewTimer}/>
+      <TimerList
+        timerList={timerList}
+        deleteTimer={deleteTimer}
+        changeTimeInfo={changeTimeInfo}
+      />
     </div>
   );
 }

@@ -1,0 +1,9 @@
+.timerList {
+    width: 100%;
+    max-width: 1300px;
+    display: flex;
+    justify-content: center;
+    align-content: stretch;
+    flex-wrap: wrap;
+    height: 100%;
+}
