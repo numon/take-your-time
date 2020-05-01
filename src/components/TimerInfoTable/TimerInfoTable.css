@@ -1,0 +1,41 @@
+.timerTab{
+    display: flex;
+    height: 92px;
+    border: 1px solid #ADB8D8;
+    margin: 10px auto;
+    justify-content: center;
+    align-content: center;
+    width: max-content;
+    background: #FFCF54;
+    border-radius: 5px;
+}
+
+.timerTab__item {
+    margin: auto 8px;
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+    background: #FFCF54;
+    border-radius: 3px;
+    border: 1px solid #FFCF54;
+}
+
+.timerTab__item > div {
+    width: 100%;
+    text-align: center;
+    background: #FFCF54;
+}
+.darkBack > div{
+    background: #ffb907;
+}
+
+.timerTab__title{
+    background: #FFCF54;
+    padding: 10px 4px;
+}
+
+.timerTab__time {
+    background: #FFCF54;
+    padding: 10px 4px;
+    font-weight: bold;
+}

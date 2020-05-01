@@ -17,6 +17,13 @@ const TimerList = ({timerList, changeTimeInfo, deleteTimer}: any) => {
           />
         )
       }
+      <div className="timer">
+        <div className="timer__title">
+
+        </div>
+        <div className="timer__time"></div>
+        <div className="timer__icon"></div>
+      </div>
     </div>
   );
 };
