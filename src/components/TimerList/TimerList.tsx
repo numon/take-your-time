@@ -1,10 +1,12 @@
 import React from 'react';
 import { TimerData } from '../../interfaces';
 import Timer from '../Timer/Timer';
+import TimerForm from '../TimerForm/TimerForm';
 
 import './TimerList.css';
 
-const TimerList = ({timerList, changeTimeInfo, deleteTimer}: any) => {
+const TimerList = ({timerList, changeTimeInfo, deleteTimer, addNewTimer}: any) => {
+
   return (
     <div className="timerList">
       {
@@ -17,13 +19,7 @@ const TimerList = ({timerList, changeTimeInfo, deleteTimer}: any) => {
           />
         )
       }
-      <div className="timer">
-        <div className="timer__title">
-
-        </div>
-        <div className="timer__time"></div>
-        <div className="timer__icon"></div>
-      </div>
+      <TimerForm addNewTimer={addNewTimer}/>
     </div>
   );
 };

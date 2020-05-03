@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: #F2F2F2;
 }
 
 body {
@@ -12,6 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #F2F2F2;
 }
 
 /*font-family: 'Muli', sans-serif;*/
@@ -22,4 +22,5 @@ body {
   padding: 10px 20px;
   border:0;
   cursor: pointer;
+  margin: 1px;
 }

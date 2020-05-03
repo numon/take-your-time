@@ -1,0 +1,23 @@
+
+form {
+    background: #fff;
+}
+
+.timer input[type="text"] {
+    border: 1px solid #FFCF54;
+    border-radius: 4px;
+    font-size: 15px;
+    outline: 0;
+    padding: 10px;
+    width: 80%;
+    margin: 5px 0;
+}
+
+input[type="text"].timer__inputTitle {
+    border: 1px solid transparent;
+}
+
+input[type="text"].active {
+    border: 1px solid #FFCF54;
+}
+

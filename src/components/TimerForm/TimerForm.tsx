@@ -1,6 +1,9 @@
 import React, { ChangeEvent, FormEvent, useCallback, useState } from 'react';
+import { FaPlusCircle } from 'react-icons/fa';
 
-const TimerForm = ({addTimer}: any) => {
+import './TimerForm.css';
+
+const TimerForm = ({addNewTimer}: any) => {
   const [ title, setTitle ] = useState<string>('');
   const [ icon, setIcon ] = useState<string>('');
   const [ showForm, SetShowForm ] = useState<boolean>(false);
@@ -12,7 +15,7 @@ const TimerForm = ({addTimer}: any) => {
 
   const handleAddTimer = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    addTimer({
+    addNewTimer({
       id: Date.now(),
       title,
       icon,
@@ -22,30 +25,46 @@ const TimerForm = ({addTimer}: any) => {
   };
 
   return (
-    <div>
-      <button onClick={handleShowForm}>Add timer</button>
-      {
-        showForm ? (
-          <form onSubmit={handleAddTimer}>
-            <input
-              type="text"
-              name='title'
-              value={title}
-              onChange={handleTitleChange}
-              required
-            />
-            <input
-              type="text"
-              name='icon'
-              value={icon}
-              onChange={handleIconChange}
-            />
-            <input type="submit" value="Add"/>
-            <input type="button" value="Cancel" onClick={handleHideForm}/>
-          </form>
-        ) : null
-      }
+    <div className="timer">
+      <div className="timer__title">
+        <div className="timer__add">
+          {
+            showForm ? (
+              <form onSubmit={handleAddTimer}>
+                <input
+                  id="title"
+                  type="text"
+                  name="title"
+                  value={title}
+                  onChange={handleTitleChange}
+                  required
+                  placeholder="Enter title"
+                />
+                <input
+                  id="icon"
+                  type="text"
+                  name="icon"
+                  value={icon}
+                  placeholder="Enter icon"
+                  onChange={handleIconChange}
+                />
+                <div className="timer__navAdd">
+                  <input className="btn" type="submit" value="Add"/>
+                  <input className="btn" type="button" value="Cancel" onClick={handleHideForm}/>
+                </div>
+              </form>
+            ) : (
 
+              <FaPlusCircle
+                color="#FFCF54"
+                size="110"
+                className="timer__addButton"
+                onClick={handleShowForm}
+              />
+            )
+          }
+        </div>
+      </div>
     </div>
   );
 };

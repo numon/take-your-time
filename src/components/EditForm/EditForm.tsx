@@ -1,6 +1,6 @@
-import React, { ChangeEvent, useCallback, useState } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 
-const EditForm = ({timeInfo, showForm, updateTimer}: any) => {
+const EditForm = ({timeInfo, editForm, setEditForm, updateTimer}: any) => {
   const [ newTitle, setTitle ] = useState(timeInfo.title);
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => setTitle(e.target.value), []);
@@ -10,15 +10,27 @@ const EditForm = ({timeInfo, showForm, updateTimer}: any) => {
       id: timeInfo.id,
       title: newTitle,
     });
-    showForm(false);
-  }, [timeInfo, newTitle, showForm, updateTimer]);
-  const handleClose = useCallback(() => showForm(false), [showForm]);
+    setEditForm(false);
+  }, [ timeInfo, newTitle, updateTimer, setEditForm ]);
+
+  const inputEl = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if(inputEl && inputEl.current) {
+      inputEl.current.focus();
+    }
+  });
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" value={newTitle} name="title" onChange={handleChange}/>
-      <input type="submit" value="ok"/>
-      <input type="button" value="X" onClick={handleClose}/>
+      <input
+        ref={inputEl}
+        type="text"
+        value={newTitle}
+        onChange={handleChange}
+        disabled={!editForm}
+        className={`timer__inputTitle ${editForm ? "active" : null}`}
+      />
     </form>
   );
 

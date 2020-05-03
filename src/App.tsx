@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './App.css';
-import TimerForm from './components/TimerForm/TimerForm';
 import TimerInfoTable from './components/TimerInfoTable/TimerInfoTable';
 import { TimerData } from './interfaces';
 import TimerList from './components/TimerList/TimerList';
@@ -77,11 +76,11 @@ function App() {
   return (
     <div className="App">
       <TimerInfoTable timers={timerList}/>
-      <TimerForm addTimer={addNewTimer}/>
       <TimerList
         timerList={timerList}
         deleteTimer={deleteTimer}
         changeTimeInfo={changeTimeInfo}
+        addNewTimer={addNewTimer}
       />
     </div>
   );

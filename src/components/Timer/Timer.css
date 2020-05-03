@@ -1,29 +1,57 @@
-.timer{
-    width:300px;
-    border:1px solid #ccc;
+.timer {
+    width: 300px;
+    border: 1px solid #ccc;
     margin: 10px;
     display: flex;
     flex-direction: column;
     background: #FFFFFF;
-    box-shadow: 0px 32px 20px rgba(4, 22, 87, 0.0873306);
+    box-shadow: 0 32px 20px rgba(4, 22, 87, 0.0873306);
     border-radius: 20px;
-
+    position: relative;
 }
+
 .timer > div {
     width: 100%;
     text-align: center;
     background: #fff;
 }
-.timer__title{
+
+.timer__title {
     margin: 25px 0;
     font-size: 24px;
 }
-.timer__time{
-    font-weight:bold;
+
+.timer__title:hover .timer__pencil {
+    display: block;
+}
+
+
+.timer__pencil {
+    position: absolute;
+    top: 32px;
+    right: 12px;
+    display: none;
+}
+
+.timer__add {
+    margin: auto 0;
+    font-size: 24px;
+}
+
+.timer__add svg{
+    margin-top: 36px;
+}
+
+.timer__addButton {
+    background: #ffffff;
+}
+
+.timer__time {
+    font-weight: bold;
     font-size: 34px;
 }
 
-.timer__nav:before{
+.timer__nav:before, .timer__navAdd:before {
     content: '';
     display: inline-block;
     vertical-align: middle;
@@ -31,10 +59,15 @@
     margin: 14px 15%;
     height: 1px;
     /*background: linear-gradient(to right, rgba(116,95,181,.2), transparent 80%);*/
-    background: rgba(116,95,181,.2);
+    background: rgba(116, 95, 181, .2);
 
 }
 
-.timer__nav{
+.timer__nav {
     margin: 20px 0 30px 0;
+}
+
+.timer__navAdd {
+    background: #ffffff;
+    margin: 32px 0 0 0;
 }

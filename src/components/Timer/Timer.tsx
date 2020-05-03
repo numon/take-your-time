@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { timeToHours, timeToMin, timeToSec } from '../../utils/dateParser';
 import EditForm from '../EditForm/EditForm';
+import { FaPencilAlt } from 'react-icons/fa';
 
 import './Timer.css';
 
@@ -8,7 +9,7 @@ function Timer({timeInfo, updateTimer, deleteTimer}: any) {
 
   const [ time, setTimer ] = useState(0);
   const [ intervalId, SetIntervalID ] = useState();
-  const [ editForm, shotEditForm ] = useState(false);
+  const [ editForm, setEditForm ] = useState(false);
 
   const handleStartTimer = useCallback(
     () => {
@@ -19,7 +20,7 @@ function Timer({timeInfo, updateTimer, deleteTimer}: any) {
     [ time, intervalId ]
   );
 
-  const handleShowForm = useCallback(() => shotEditForm(true), []);
+  const handleShowForm = useCallback(() => setEditForm(true), []);
 
   const convertToSec = useCallback(timeToSec, []);
   const convertToMin = useCallback(timeToMin, []);
@@ -47,14 +48,17 @@ function Timer({timeInfo, updateTimer, deleteTimer}: any) {
 
   return (
       <div className="timer">
-        <div className="timer__title">
-          {timeInfo.title} -
-        <span onClick={handleShowForm}>E</span>
-        {editForm && <EditForm
+        <div className="timer__title" onClick={handleShowForm} >
+
+        <EditForm
           timeInfo={timeInfo}
-          showForm={shotEditForm}
+          editForm={editForm}
+          setEditForm={setEditForm}
           updateTimer={updateTimer}
-          />}
+          />
+          <span className="timer__pencil">
+            <FaPencilAlt size={16}/>
+          </span>
         </div>
         <div className="timer__time">{showHours}:{showMin}:{showSec}</div>
         <div className="timer__icon">{timeInfo.icon}</div>
